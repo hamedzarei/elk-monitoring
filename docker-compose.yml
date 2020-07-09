@@ -26,8 +26,16 @@ services:
     links:
       - elasticsearch
 
-  filebeat:
+  filebeat-nginx:
     image: docker.elastic.co/beats/filebeat:7.1.1
     volumes:
       - /home/zrhm7232/MyFiles/Projects/omid/omid2/openresty/log/access.log:/logs/omid2/openresty/access.log
-      - "$PWD/filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro"
+#      - /home/zrhm7232/MyFiles/Projects/omid/omid2/python_mm/log/debug:/logs/omid2/mm/debug
+      - "$PWD/filebeat/config/nginx.yml:/usr/share/filebeat/filebeat.yml:ro"
+
+  filebeat-mm:
+    image: docker.elastic.co/beats/filebeat:7.1.1
+    volumes:
+#      - /home/zrhm7232/MyFiles/Projects/omid/omid2/openresty/log/access.log:/logs/omid2/openresty/access.log
+      - /home/zrhm7232/MyFiles/Projects/omid/omid2/python_mm/log/debug:/logs/omid2/mm/debug
+      - "$PWD/filebeat/config/mm.yml:/usr/share/filebeat/filebeat.yml:ro"
