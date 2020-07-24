@@ -1,7 +1,7 @@
 filebeat.inputs:
 - type: log
   paths:
-    - /logs/omid2/openresty/access.log
+    - /logs/openresty/access.log
   fields:
       service: log
   fields_under_root: true
